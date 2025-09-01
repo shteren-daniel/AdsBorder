@@ -1,0 +1,43 @@
+<div class="ads-header">
+  <div class="user-icon-container" >
+    <img
+      src="assets/images/user-icon.png"
+      class="user-icon"
+      (click)="login()"
+    
+    />
+  </div>
+  @if(!this.authStore.isLoggedIn()){
+  <p>יש להתחבר כדי הוסיף או לעדכן</p>
+  }
+  <div class="header-content">
+    <img src="assets/images/logo.png" alt="Logo" class="logo-image" />
+  </div>
+</div>
+
+<div>
+  <button (click)="addNewAd()" [disabled]="!canAddedNew()">
+    הוסף מודעה חדשה
+  </button>
+</div>
+<div class="search-container">
+  <input
+    type="text"
+    placeholder="חפש מודעה..."
+    [(ngModel)]="searchTerm"
+    (input)="onSearchChange()"
+    class="search-input"
+  />
+</div>
+<div class="ads-container">
+  <ng-container>
+    @for (ad of this.adsStore.filteredAds(); track ad.id) {
+    <app-ad-card
+      [ad]="ad"
+      [isSelected]="ad.id === selectedAdId"
+      (select)="selectAd(ad.id)"
+      (edit)="editAd(ad.id)"
+    ></app-ad-card>
+    }
+  </ng-container>
+</div>

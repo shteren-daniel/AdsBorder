@@ -1,0 +1,65 @@
+<div class="overlay">
+  
+  <div class="edit-card">
+    <button class="close-btn" (click)="abort()">✕</button>
+    <h2>{{ title }}</h2>
+    <form [formGroup]="form" (ngSubmit)="save()">
+      <label>
+        סוג:
+        <select formControlName="type">
+          @for (type of types; track type.id) {
+          <option [value]="type">{{ type }}</option>
+          }
+        </select>
+      </label>
+
+      <label>
+        כותרת:
+        <input formControlName="title" />
+      </label>
+
+      <label>
+        תיאור:
+        <textarea formControlName="description"></textarea>
+      </label>
+      <label>
+        מחיר:
+        <input type="number" formControlName="price" />
+      </label>
+
+      <label>
+        מיקום:
+        <input formControlName="location" />
+      </label>
+
+      <label>
+        תמונה:
+        <div class="ad-image">
+          @if(ad && ad.image){
+          <img [src]="ad.image" alt="Ad image" />
+
+          } @else{
+          <ng-template #placeholder>
+            <div class="image-placeholder">לא נבחרה תמונה</div>
+          </ng-template>
+          }
+        </div>
+        <button
+          type="button"
+          class="btn btn-sm btn-primary" 
+          (click)="fileInput.click()"
+        >
+          בחר תמונה
+        </button>
+
+        <input
+          type="file"
+          #fileInput
+          (change)="onFileSelected($event)"
+          style="display: none"
+        />
+      </label>
+      <button type="submit" class="save-button">שמור</button>
+    </form>
+  </div>
+</div>

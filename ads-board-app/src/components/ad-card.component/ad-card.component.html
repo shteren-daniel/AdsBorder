@@ -1,0 +1,37 @@
+<div
+  class="ad-card"
+  [ngClass]="[ad.type, isSelected ? 'selected' : '']"
+  (click)="onClick()"
+  (dblclick)="canEdit() && editeAd()"
+>
+  @if(canEdit()){
+  <button class="edit-button" (click)="editeAd()">עדכון</button>
+  <button class="edit-button" (click)="deleteAd()">מחיקה</button>
+  }
+  <div class="ad-header">
+    <h5>{{ ad.type }}</h5>
+    <h5>מיקום:{{ ad.location }}</h5>
+  </div>
+  <hr />
+  <div class="ad-content">
+    <h3 class="ad-title">{{ ad.title }}</h3>
+    <div class="ad-description">
+      <p>{{ ad.description }}</p>
+    </div>
+    <div>
+      <p class="ad-price">מחיר:{{ ad.price }}</p>
+    </div>
+    <hr />
+    <div class="ad-image">
+      @if(ad.image){
+      <img [src]="ad.image" alt="Ad image" />
+
+      } @else{
+      <p>לא נבחרה תמונה</p>
+      <ng-template #placeholder>
+        <div class="image-placeholder"></div>
+      </ng-template>
+      }
+    </div>
+  </div>
+</div>

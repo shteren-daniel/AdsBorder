@@ -1,0 +1,21 @@
+<div class="login-overlay">
+  <div class="login-card">
+    <h2>כניסה למערכת</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="submit()">
+      <label>
+        שם משתמש:
+        <input formControlName="userId" />
+      </label>
+      <label>
+        אימייל:
+        <input type="email" formControlName="email" />
+      </label>
+      <button type="submit" [disabled]="loading">התחבר</button>
+      @if(errorMessage){
+      <div class="error-message">
+        {{ errorMessage }}
+      </div>
+      }
+    </form>
+  </div>
+</div>

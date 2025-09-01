@@ -1,0 +1,21 @@
+# Node / Angular
+client/node_modules/
+client/dist/
+client/out-tsc/
+client/.angular/
+client/package-lock.json
+
+# Visual Studio / C# / .NET
+server/bin/
+server/obj/
+*.user
+*.suo
+*.vscode/
+*.vs/
+*.DS_Store
+*.db
+*.pdb
+*.log
+
+# Environment
+*.env
